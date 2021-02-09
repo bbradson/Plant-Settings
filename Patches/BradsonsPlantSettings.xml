@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+
+	<!-- Allow everything to be sown -->
+<Operation Class="BradsonsPlantSettings.PatchOperation_SettingActive">
+	<settings>
+		<li>addSowTags</li>
+	</settings>
+	<active Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef/plant[not(sowTags)]</xpath>
+				<value>
+					<sowTags>
+						<li>Ground</li>
+					</sowTags>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef/plant/sowTags[not(li = "Ground")]</xpath>
+				<value>
+					<li>Ground</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Plant_TreeAnima"]/plant/sowResearchPrerequisites</xpath>
+				<value>
+					<sowResearchPrerequisites Inherit="True" />
+				</value>
+			</li>
+		</operations>
+	</active>
+</Operation>
+
+	<!-- Allow Hydroponics Sowing -->
+<Operation Class="BradsonsPlantSettings.PatchOperation_SettingActive">
+	<settings>
+		<li>addHydroponic</li>
+	</settings>
+	<active Class="PatchOperationAdd">
+		<success>Always</success>
+		<xpath>/Defs/ThingDef/plant[
+			not(mustBeWildToSow = "true") and
+			sowTags/li = "Ground" and
+			not(sowTags/li = "Hydroponic")]/sowTags</xpath>
+		<value>
+			<li>Hydroponic</li>
+		</value>
+	</active>
+</Operation>
+
+	<!-- Allow Plant Pot Sowing -->
+<Operation Class="BradsonsPlantSettings.PatchOperation_SettingActive">
+	<settings>
+		<li>addPots</li>
+	</settings>
+	<active Class="PatchOperationAdd">
+		<success>Always</success>
+		<xpath>/Defs/ThingDef/plant[
+			not(mustBeWildToSow = "true") and
+			sowTags/li = "Ground" and
+			not(sowTags/li = "Decorative")]/sowTags</xpath>
+		<value>
+			<li>Decorative</li>
+		</value>
+	</active>
+</Operation>
+
+	<!-- Allow Sowing Wild Plants -->
+<Operation Class="BradsonsPlantSettings.PatchOperation_SettingActive">
+	<settings>
+		<li>allowWildPlants</li>
+	</settings>
+	<active Class="PatchOperationReplace">
+		<success>Always</success>
+		<xpath>/Defs/ThingDef/plant[mustBeWildToSow = "true"]/mustBeWildToSow</xpath>
+		<value>
+			<mustBeWildToSow>false</mustBeWildToSow>
+		</value>
+	</active>
+</Operation>
+
+	<!-- Allow Wild Hydroponics Sowing -->
+<Operation Class="BradsonsPlantSettings.PatchOperation_SettingActive">
+	<settings>
+		<li>wildHydroponic</li>
+	</settings>
+	<active Class="PatchOperationAdd">
+		<success>Always</success>
+		<xpath>/Defs/ThingDef/plant/sowTags[
+			li = "Ground" and
+			not(li = "Hydroponic")]</xpath>
+		<value>
+			<li>Hydroponic</li>
+		</value>
+	</active>
+</Operation>
+
+	<!-- Allow Wild Plant Pot Sowing -->
+<Operation Class="BradsonsPlantSettings.PatchOperation_SettingActive">
+	<settings>
+		<li>wildPots</li>
+	</settings>
+	<active Class="PatchOperationAdd">
+		<success>Always</success>
+		<xpath>/Defs/ThingDef/plant/sowTags[
+			li = "Ground" and
+			not(li = "Decorative")]</xpath>
+		<value>
+			<li>Decorative</li>
+		</value>
+	</active>
+</Operation>
+
+	<!-- Remove Tree Spacing -->
+	<!-- By default this only works on trees of a size smaller than 3 -->
+	<!-- Edit 'not(visualSizeRange > 2.9)' to change that -->
+<Operation Class="BradsonsPlantSettings.PatchOperation_SettingActive">
+	<settings>
+		<li>fixTreeSpacing</li>
+	</settings>
+	<active Class="PatchOperationReplace">
+		<success>Always</success>
+		<xpath>/Defs/ThingDef/plant[
+			blockAdjacentSow = "true" and
+			not(visualSizeRange > 2.9)]/blockAdjacentSow</xpath>
+		<value>
+			<blockAdjacentSow>false</blockAdjacentSow>
+		</value>
+	</active>
+</Operation>
+
+	<!-- Allow Indoor Trees -->
+<Operation Class="BradsonsPlantSettings.PatchOperation_SettingActive">
+	<settings>
+		<li>fixTreeRoofing</li>
+	</settings>
+	<active Class="PatchOperationReplace">
+		<success>Always</success>
+		<xpath>/Defs/ThingDef/plant[interferesWithRoof = "true"]/interferesWithRoof</xpath>
+		<value>
+			<interferesWithRoof>false</interferesWithRoof>
+		</value>
+	</active>
+</Operation>
+			
+</Patch>

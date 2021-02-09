@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ModMetaData>
+
+	<name>Bradson's Plant Settings</name>
+	<author>bradson</author>
+	<packageId>bs.plantsettings</packageId>
+	<supportedVersions>
+		<li>1.0</li>
+		<li>1.1</li>
+		<li>1.2</li>
+	</supportedVersions>
+	<description>Settings to make wild plants and trees generally plantable, plantable adjacent to each other, plantable under roofs, on fertile terrain, on hydroponics, and in plant pots. Several checkboxes, with actual patching applied through xml.</description>
+	<loadAfter>
+		<li>BiomesTeam.BiomesCore</li>
+		<li>Crustypeanut.RC2.Core</li>
+		<li>dismarzero.VGP.VGPThreeSistersPlants</li>
+		<li>dismarzero.VGP.VGPVegetableGarden</li>
+		<li>Ddismarzero.VGP.XtraTreesandFlowers</li>
+		<li>Solaris.FurnitureBase</li>
+		<li>VanillaExpanded.VPlantsE</li>
+	</loadAfter>
+	
+</ModMetaData>
